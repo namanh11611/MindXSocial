@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/article_padding"
+    android:layout_marginVertical="@dimen/article_padding_vertical"
+    android:background="?attr/colorBackground"
+    app:cardCornerRadius="@dimen/article_radius"
+    app:cardElevation="@dimen/article_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorBackground"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="@dimen/article_padding">
+
+        <ImageView
+            android:id="@+id/image_news"
+            android:layout_width="@dimen/article_image_size"
+            android:layout_height="@dimen/article_image_size"
+            android:background="@drawable/background_rounded_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/article_padding"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="?attr/colorTextPrimary"
+            android:textSize="@dimen/article_text_title_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_news"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/article_text_description_margin"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:maxLines="2"
+            android:textColor="?attr/colorTextPrimary"
+            android:textSize="@dimen/article_text_description_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txt_title"
+            app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+        <TextView
+            android:id="@+id/txt_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textColor="?attr/colorTextSecondary"
+            android:textSize="@dimen/article_text_time_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txt_title" />
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/article_text_time_margin"
+            android:fontFamily="@font/roboto_italic"
+            android:textColor="?attr/colorTextSecondary"
+            android:textSize="@dimen/article_text_time_size"
+            app:layout_constraintBottom_toBottomOf="@id/txt_author"
+            app:layout_constraintStart_toEndOf="@id/txt_author"
+            app:layout_constraintTop_toTopOf="@id/txt_author" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
