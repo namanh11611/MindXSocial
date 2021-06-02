@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.namanh.kotlinbase.adapter.NewsAdapter
 import com.namanh.kotlinbase.databinding.FragmentNewsListBinding
+import com.namanh.kotlinbase.model.News
 import com.namanh.kotlinbase.view.main.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,18 +32,17 @@ class NewsListFragment : BaseFragment<FragmentNewsListBinding>(), View.OnClickLi
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        val newsList = emptyList<News>()
-//        val newsAdapter = NewsAdapter(newsList)
+        val newsList = emptyList<News>()
+        val newsAdapter = NewsAdapter(newsList)
 
-//        binding.listNews.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-//        binding.listNews.adapter = newsAdapter
-//
-//        viewModel.getNews().observe(viewLifecycleOwner, { result ->
-//            if (result == null) return@observe
-//            newsAdapter.dataSet = result
-//            newsAdapter.notifyDataSetChanged()
-//
-//        })
+        binding.listNews.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.listNews.adapter = newsAdapter
+
+        viewModel.getNews().observe(viewLifecycleOwner, { result ->
+            if (result == null) return@observe
+            newsAdapter.dataSet = result
+            newsAdapter.notifyDataSetChanged()
+        })
     }
 
     override fun onDestroyView() {

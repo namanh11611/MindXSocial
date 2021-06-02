@@ -7,13 +7,13 @@
     android:orientation="vertical"
     tools:context=".view.list.NewsListFragment">
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/list_news"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="?attr/colorBackground"-->
-<!--        android:clipToPadding="false"-->
-<!--        android:paddingVertical="@dimen/article_padding_vertical" />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingVertical="@dimen/article_padding_vertical" />
+<!--    android:background="?attr/colorBackground"-->
 
     <TextView
         android:id="@+id/text_no_connect"
@@ -22,9 +22,9 @@
         android:layout_marginHorizontal="@dimen/article_padding"
         android:fontFamily="@font/roboto"
         android:text="@string/please_check_internet_connect"
-        android:textColor="?attr/colorTextPrimary"
         android:textSize="@dimen/article_text_title_size"
         android:visibility="gone" />
+<!--    android:textColor="?attr/colorTextPrimary"-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_reconnect"
