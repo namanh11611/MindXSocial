@@ -1,6 +1,6 @@
 package com.namanh.kotlinbase.service
 
-import com.namanh.kotlinbase.model.News
+import com.namanh.kotlinbase.model.NewsResponse
 import com.namanh.kotlinbase.utils.AppUtils
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -15,7 +15,7 @@ interface ApiService {
         @Query("country") country: String,
         @Query("category") category: String,
         @Query("apiKey") apiKey: String,
-    ): Call<List<News>>
+    ): Call<NewsResponse>
 
     companion object {
         fun create(): ApiService {

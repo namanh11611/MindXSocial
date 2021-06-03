@@ -11,7 +11,7 @@ import com.namanh.kotlinbase.model.News
 class NewsAdapter(var dataSet: List<News>) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root),
+    class ViewHolder(private val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
 
         private lateinit var mNews: News
@@ -26,7 +26,7 @@ class NewsAdapter(var dataSet: List<News>) :
             binding.txtDescription.text = news.description
             binding.txtAuthor.text = news.author
             binding.txtTime.text = news.publishedAt
-            GlideHelper.loadImage(binding.root.context, binding.imageNews, news.urlToImage)
+            GlideHelper.loadImage(binding.root.context, binding.imgNews, news.urlToImage)
         }
 
         override fun onClick(v: View?) {
@@ -37,7 +37,7 @@ class NewsAdapter(var dataSet: List<News>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
