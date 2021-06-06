@@ -6,5 +6,5 @@ import javax.inject.Singleton
 
 @Singleton
 interface NewsRepository {
-    fun getNews(): MutableLiveData<NewsResponse>
+    suspend fun getNews(): MutableLiveData<NewsResponse>
 }
