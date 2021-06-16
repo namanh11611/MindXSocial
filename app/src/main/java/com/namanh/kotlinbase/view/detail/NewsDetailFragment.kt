@@ -2,31 +2,28 @@ package com.namanh.kotlinbase.view.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.namanh.kotlinbase.R
+import androidx.fragment.app.viewModels
+import com.namanh.kotlinbase.databinding.FragmentNewsDetailBinding
+import com.namanh.kotlinbase.view.main.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class NewsDetailFragment : Fragment() {
+@AndroidEntryPoint
+class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>() {
 
     companion object {
         fun newInstance() = NewsDetailFragment()
     }
 
-    private lateinit var viewModel: NewsDetailViewModel
+    private val viewModel: NewsDetailViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_news_detail, container, false)
-    }
+    override fun viewBindingInflate(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentNewsDetailBinding.inflate(inflater, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NewsDetailViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

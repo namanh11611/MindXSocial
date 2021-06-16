@@ -28,13 +28,10 @@ class NewsListFragment : BaseFragment<FragmentNewsListBinding>(), View.OnClickLi
     private val viewModel: NewsListViewModel by viewModels()
     private val mNewsAdapter = NewsAdapter(emptyList<News>())
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentNewsListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun viewBindingInflate(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentNewsListBinding.inflate(inflater, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -48,11 +45,6 @@ class NewsListFragment : BaseFragment<FragmentNewsListBinding>(), View.OnClickLi
         if (context?.let { NetworkUtils.isNetworkConnected(it) } == false) {
             setState(State.NO_INTERNET)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onClick(v: View?) {
