@@ -22,8 +22,19 @@ class NewsListViewModel @Inject constructor(
 //    private var newsResponse: MutableLiveData<NewsResponse> = newsRepo.getNews()
     private lateinit var newsResponse: MutableLiveData<NewsResponse>
 
-    private val _uiState = MutableStateFlow<NewsUiState>(NewsUiState.LOADING)
+    private val _uiState = MutableStateFlow<NewsUiState>(NewsUiState.Loading)
     val uiState: StateFlow<NewsUiState> = _uiState
+
+    fun getNews(): MutableLiveData<NewsResponse> {
+        LogUtil.d("viewmodel getnew out")
+        viewModelScope.launch {
+            LogUtil.d("viewmodel getnew in")
+            val newsRes = newsRepo.getNews()
+            _uiState.value = NewsUiState.Success(newsRes)
+//            newsResponse = newsRepo.getNews()
+        }
+        return newsResponse
+    }
 
     fun fetchNews(viewLifecycleOwner: LifecycleOwner) {
         viewModelScope.launch {
@@ -32,22 +43,6 @@ class NewsListViewModel @Inject constructor(
             })
         }
     }
-
 //    fun getNews() = newsResponse
-    fun getNews(): MutableLiveData<NewsResponse> {
-        LogUtil.d("viewmodel getnew out")
-        viewModelScope.launch {
-            _uiState.value = NewsUiState.SUCCESS()
-            LogUtil.d("viewmodel getnew in")
-            newsResponse = newsRepo.getNews()
-        }
-        return newsResponse
-    }
-
-//        return withContext(Dispatchers.IO) {
-//            LogUtil.d("viewmodel getnew in")
-//            newsResponse = newsRepo.getNews()
-//            return@withContext newsResponse
-//        }
 
 }
