@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.namanh.kotlinbase.databinding.ItemNewsBinding
 import com.namanh.kotlinbase.helper.GlideHelper
-import com.namanh.kotlinbase.model.News
+import com.namanh.kotlinbase.data.model.News
 
 class NewsAdapter(var dataSet: List<News>) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {

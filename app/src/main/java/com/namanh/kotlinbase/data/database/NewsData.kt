@@ -1,4 +1,4 @@
-package com.namanh.kotlinbase.database
+package com.namanh.kotlinbase.data.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

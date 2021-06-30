@@ -2,7 +2,7 @@ package com.namanh.kotlinbase.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.namanh.kotlinbase.model.News
+import com.namanh.kotlinbase.data.model.News
 import javax.inject.Inject
 import javax.inject.Singleton
 

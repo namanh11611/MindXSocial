@@ -1,4 +1,4 @@
-package com.namanh.kotlinbase.model
+package com.namanh.kotlinbase.data.model
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
