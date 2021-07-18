@@ -1,10 +1,11 @@
 package com.namanh.kotlinbase.data.model
 
-import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Keep
+@Entity(tableName = "source")
 data class Source(
-    @SerializedName("id") val id: String,
-    @SerializedName("name") val name: String,
+    @PrimaryKey val id: String,
+    @ColumnInfo(name = "name") val name: String,
 )

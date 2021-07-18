@@ -1,7 +1,7 @@
 package com.namanh.kotlinbase.view.list
 
 import androidx.lifecycle.*
-import com.namanh.kotlinbase.data.model.NewsResponse
+import com.namanh.kotlinbase.data.model.News
 import com.namanh.kotlinbase.data.repository.NewsRepository
 import com.namanh.kotlinbase.data.repository.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ class NewsListViewModel @Inject constructor(
 
     private val _forceUpdate = MutableLiveData(true)
 
-    val items: LiveData<NewsResponse> = _forceUpdate.switchMap { forceUpdate ->
+    val items: LiveData<List<News>> = _forceUpdate.switchMap { forceUpdate ->
         if (forceUpdate) {
             viewModelScope.launch {
                 newsRepo.getNews()
@@ -26,12 +26,16 @@ class NewsListViewModel @Inject constructor(
         }
     }
 
-    private fun handleNews(newsResponse: ResourceState<NewsResponse>): LiveData<NewsResponse> {
-        val result = MutableLiveData<NewsResponse>()
+    private fun handleNews(newsResponse: ResourceState<List<News>>): LiveData<List<News>> {
+        val result = MutableLiveData<List<News>>()
         when (newsResponse) {
             is ResourceState.Success -> result.value = newsResponse.getCurrentData()
         }
         return result
+    }
+
+    fun forceUpdate() {
+        _forceUpdate.value = true
     }
 
 }

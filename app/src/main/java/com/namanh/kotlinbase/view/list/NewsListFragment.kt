@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.namanh.kotlinbase.R
 import com.namanh.kotlinbase.adapter.NewsAdapter
 import com.namanh.kotlinbase.data.model.News
 import com.namanh.kotlinbase.databinding.FragmentNewsListBinding
@@ -48,15 +49,21 @@ class NewsListFragment : BaseFragment<FragmentNewsListBinding>(), View.OnClickLi
 
     override fun onClick(v: View?) {
         when (v?.id) {
-//            R.id.bt_reconnect -> viewModel.fetchNews(viewLifecycleOwner)
+            R.id.bt_reconnect -> {
+                setState(State.LOADING)
+                viewModel.forceUpdate()
+            }
         }
     }
 
     private fun observeNews() {
         viewModel.items.observe(viewLifecycleOwner, { result ->
-            if (result == null || result.articles.isEmpty()) return@observe
+            if (result == null || result.isEmpty()) {
+                setState(State.NO_INTERNET)
+                return@observe
+            }
             setState(State.LOADED)
-            mNewsAdapter.dataSet = result.articles
+            mNewsAdapter.dataSet = result
             mNewsAdapter.notifyDataSetChanged()
         })
     }

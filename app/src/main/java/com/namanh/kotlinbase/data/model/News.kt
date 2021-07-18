@@ -1,16 +1,18 @@
 package com.namanh.kotlinbase.data.model
 
-import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Keep
+@Entity(tableName = "news")
 data class News(
-    @SerializedName("source") val source: Source,
-    @SerializedName("author") val author: String,
-    @SerializedName("title") val title: String,
-    @SerializedName("description") val description: String,
-    @SerializedName("url") val url: String,
-    @SerializedName("urlToImage") val urlToImage: String,
-    @SerializedName("publishedAt") val publishedAt: String,
-    @SerializedName("content") val content: String,
+    @PrimaryKey(autoGenerate = true) val id: Int,
+//    @ColumnInfo(name = "source") val source: Source,
+    @ColumnInfo(name = "author") val author: String,
+    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "url") val url: String,
+    @ColumnInfo(name = "urlToImage") val urlToImage: String,
+    @ColumnInfo(name = "publishedAt") val publishedAt: String,
+    @ColumnInfo(name = "content") val content: String,
 )
