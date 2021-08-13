@@ -10,28 +10,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsListViewModel @Inject constructor(
-    private val newsRepo : NewsRepository
-): ViewModel() {
+    private val newsRepo: NewsRepository
+) : ViewModel() {
 
     private val _forceUpdate = MutableLiveData(true)
 
-    val items: LiveData<List<News>> = _forceUpdate.switchMap { forceUpdate ->
+    val items: LiveData<ResourceState<List<News>>> = _forceUpdate.switchMap { forceUpdate ->
         if (forceUpdate) {
             viewModelScope.launch {
                 newsRepo.getNews()
             }
         }
-        newsRepo.observeNews(viewModelScope.coroutineContext).distinctUntilChanged().switchMap {
-            handleNews(it)
-        }
-    }
-
-    private fun handleNews(newsResponse: ResourceState<List<News>>): LiveData<List<News>> {
-        val result = MutableLiveData<List<News>>()
-        when (newsResponse) {
-            is ResourceState.Success -> result.value = newsResponse.getCurrentData()
-        }
-        return result
+        newsRepo.observeNews(viewModelScope.coroutineContext).distinctUntilChanged()
     }
 
     fun forceUpdate() {

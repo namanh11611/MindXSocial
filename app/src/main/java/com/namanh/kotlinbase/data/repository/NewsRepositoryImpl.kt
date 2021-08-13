@@ -22,18 +22,22 @@ class NewsRepositoryImpl @Inject constructor(
     private val mNewsResponse = MutableLiveData<ResourceState<List<News>>>()
 
     override suspend fun getNews() {
-        val remoteNews = getNewsFromRemote()
-        if (remoteNews is ResourceState.Success) {
-            LogUtil.d("remoteNews $remoteNews")
-            mNewsResponse.value = remoteNews
+        var newsList = getNewsFromRemote()
+        if (newsList is ResourceState.Success) {
+            LogUtil.d("remoteNews success")
+            saveNewsToDatabase(newsList.data)
+        } else {
+            newsList = getNewsFromDatabase()
+            LogUtil.d("localNews success")
         }
+        mNewsResponse.value = newsList
     }
 
     override fun observeNews(coroutineContext: CoroutineContext): LiveData<ResourceState<List<News>>> {
         return mNewsResponse
     }
 
-    suspend fun getNewsFromDatabase(): ResourceState<List<News>> = withContext(dispatcherIO) {
+    private suspend fun getNewsFromDatabase(): ResourceState<List<News>> = withContext(dispatcherIO) {
         try {
             ResourceState.Success(newsDao.getAll())
         } catch (exception: Exception) {
