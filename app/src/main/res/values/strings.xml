@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">KotlinBase</string>
+    <string name="app_name">MindX Social</string>
     <string name="database_name">kotlin_base</string>
 
     <string name="please_check_internet_connect">Vui lòng kiểm tra lại kết nối Internet của bạn!</string>
-    <string name="other_error">Đã có lỗi xảy ra!</string>
+    <string name="other_error">Chưa có nội dung!</string>
     <string name="button_reconnect">Tải lại</string>
 </resources>

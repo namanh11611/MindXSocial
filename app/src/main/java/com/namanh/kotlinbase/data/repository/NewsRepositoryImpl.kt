@@ -6,7 +6,6 @@ import com.namanh.kotlinbase.data.database.NewsDao
 import com.namanh.kotlinbase.data.model.News
 import com.namanh.kotlinbase.data.service.ApiService
 import com.namanh.kotlinbase.di.DispatcherIO
-import com.namanh.kotlinbase.utils.AppUtils
 import com.namanh.kotlinbase.utils.LogUtil
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -22,15 +21,14 @@ class NewsRepositoryImpl @Inject constructor(
     private val mNewsResponse = MutableLiveData<ResourceState<List<News>>>()
 
     override suspend fun getNews() {
-        var newsList = getNewsFromRemote()
-        if (newsList is ResourceState.Success) {
-            LogUtil.d("remoteNews success")
-            saveNewsToDatabase(newsList.data)
-        } else {
-            newsList = getNewsFromDatabase()
-            LogUtil.d("localNews success")
-        }
+        val newsList = getNewsFromDatabase()
+        LogUtil.d("localNews success")
         mNewsResponse.value = newsList
+    }
+
+
+    override suspend fun createNews(author: String, content: String) {
+        newsDao.insert(News(0, author, "", content, "", "", "", ""))
     }
 
     override fun observeNews(coroutineContext: CoroutineContext): LiveData<ResourceState<List<News>>> {
@@ -43,25 +41,6 @@ class NewsRepositoryImpl @Inject constructor(
         } catch (exception: Exception) {
             LogUtil.e("Get news from database exception: ${exception.message}")
             ResourceState.Error("Database exception: ${exception.message}")
-        }
-    }
-
-    private suspend fun getNewsFromRemote(): ResourceState<List<News>> = withContext(dispatcherIO) {
-        try {
-            val response = apiService.getNews("us", "business", AppUtils.API_KEY)
-            ResourceState.Success(response.articles)
-        } catch (exception: Exception) {
-            LogUtil.e("Get news from remote exception: ${exception.message}")
-            ResourceState.Error("Remote exception: ${exception.message}")
-        }
-    }
-
-    private suspend fun saveNewsToDatabase(news: List<News>) = withContext(dispatcherIO) {
-        try {
-            newsDao.deleteAll()
-            newsDao.insertAll(news)
-        } catch (exception: Exception) {
-            LogUtil.e("Save database Exception: ${exception.message}")
         }
     }
 }

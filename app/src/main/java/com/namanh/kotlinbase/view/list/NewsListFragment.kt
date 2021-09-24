@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.namanh.kotlinbase.R
 import com.namanh.kotlinbase.adapter.NewsAdapter
@@ -41,6 +42,7 @@ class NewsListFragment : BaseFragment<FragmentNewsListBinding>(), View.OnClickLi
         super.onActivityCreated(savedInstanceState)
 
         binding.btReconnect.setOnClickListener(this)
+        binding.fab.setOnClickListener(this)
         binding.listNews.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.listNews.adapter = mNewsAdapter
@@ -59,6 +61,10 @@ class NewsListFragment : BaseFragment<FragmentNewsListBinding>(), View.OnClickLi
                     showWarningNoConnectionIfNeeded()
                 }, 2000)
             }
+            R.id.fab -> {
+                findNavController().navigate(
+                    NewsListFragmentDirections.actionNewsListFragmentToAddNewsFragment())
+            }
         }
     }
 
@@ -76,7 +82,7 @@ class NewsListFragment : BaseFragment<FragmentNewsListBinding>(), View.OnClickLi
 
     private fun setSuccessState(result: List<News>) {
         setUiState(UiState.SUCCESS)
-        mNewsAdapter.dataSet = result
+        mNewsAdapter.dataSet = result.reversed()
         mNewsAdapter.notifyDataSetChanged()
     }
 

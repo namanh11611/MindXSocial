@@ -3,10 +3,13 @@ package com.namanh.kotlinbase.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.namanh.kotlinbase.databinding.ItemNewsBinding
-import com.namanh.kotlinbase.helper.GlideHelper
+import com.namanh.kotlinbase.R
 import com.namanh.kotlinbase.data.model.News
+import com.namanh.kotlinbase.databinding.ItemNewsBinding
+import com.namanh.kotlinbase.view.list.NewsListFragmentDirections
 
 class NewsAdapter(var dataSet: List<News>) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
@@ -22,17 +25,20 @@ class NewsAdapter(var dataSet: List<News>) :
 
         fun bind(news: News) {
             mNews = news
-            binding.txtTitle.text = news.title
             binding.txtDescription.text = news.description
-            binding.txtAuthor.text = news.author
-            binding.txtTime.text = news.publishedAt
-            GlideHelper.loadImage(binding.root.context, binding.imgNews, news.urlToImage)
+            binding.txtAuthor.text = if (news.author.isNullOrBlank()) "Henry Nguyen" else news.author
+            binding.imgCele.setOnClickListener {
+                (it as ImageView).setColorFilter(binding.root.resources.getColor(R.color.colorPrimary))
+            }
+            binding.imgComment.setOnClickListener {
+                binding.root.findNavController()
+                    .navigate(NewsListFragmentDirections.actionNewsListFragmentToNewsDetailFragment())
+            }
         }
 
         override fun onClick(v: View?) {
-//            val bundle = bundleOf(AppUtils.PRODUCT_KEY to Gson().toJson(mNews))
-//            binding.root.findNavController()
-//                .navigate(R.id.action_newsListFragment_to_newsDetailFragment, bundle)
+            binding.root.findNavController()
+                .navigate(NewsListFragmentDirections.actionNewsListFragmentToNewsDetailFragment())
         }
     }
 

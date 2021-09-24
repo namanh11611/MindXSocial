@@ -17,26 +17,17 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:padding="@dimen/article_padding">
 
-        <ImageView
-            android:id="@+id/img_news"
-            android:layout_width="@dimen/article_image_size"
-            android:layout_height="@dimen/article_image_size"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/txt_title"
-            android:layout_width="0dp"
+            android:id="@+id/txt_author"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/article_padding"
             android:ellipsize="end"
             android:fontFamily="@font/roboto_bold"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textColor="?attr/colorTextPrimary"
-            android:textSize="@dimen/article_text_title_size"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_news"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -46,44 +37,49 @@
             android:layout_marginTop="@dimen/article_text_description_margin"
             android:ellipsize="end"
             android:fontFamily="@font/roboto"
-            android:maxLines="2"
             android:textColor="?attr/colorTextPrimary"
-            android:textSize="@dimen/article_text_description_size"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/txt_title"
-            app:layout_constraintTop_toBottomOf="@id/txt_title" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_author" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorTextPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@id/txt_description" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/txt_title">
+            app:layout_constraintTop_toBottomOf="@id/divider">
 
-            <TextView
-                android:id="@+id/txt_author"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/img_cele"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
                 android:layout_weight="1"
-                android:ellipsize="end"
-                android:fontFamily="@font/roboto"
-                android:maxLines="1"
-                android:textColor="?attr/colorTextSecondary"
-                android:textSize="@dimen/article_text_time_size" />
+                android:src="@drawable/ic_celebration" />
 
-            <TextView
-                android:id="@+id/txt_time"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/img_comment"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/article_text_time_margin"
+                android:layout_marginVertical="10dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/roboto_italic"
-                android:maxLines="1"
-                android:textAlignment="viewEnd"
-                android:textColor="?attr/colorTextSecondary"
-                android:textSize="@dimen/article_text_time_size" />
+                android:src="@drawable/ic_comment" />
+
+            <ImageView
+                android:id="@+id/img_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_share" />
 
         </LinearLayout>
 

@@ -6,9 +6,12 @@
     <dimen name="article_elevation">5dp</dimen>
     <dimen name="article_image_size">90dp</dimen>
     <dimen name="article_image_radius">5dp</dimen>
-    <dimen name="article_text_title_size">14sp</dimen>
-    <dimen name="article_text_description_size">12sp</dimen>
+    <dimen name="article_text_title_size">20sp</dimen>
+    <dimen name="article_text_description_size">16sp</dimen>
     <dimen name="article_text_description_margin">5dp</dimen>
     <dimen name="article_text_time_size">10sp</dimen>
     <dimen name="article_text_time_margin">10dp</dimen>
+
+    <dimen name="register_label_margin_top">20dp</dimen>
+    <dimen name="register_edit_text_margin_top">5dp</dimen>
 </resources>

@@ -10,6 +10,8 @@ interface NewsRepository {
 
     suspend fun getNews()
 
+    suspend fun createNews(author: String, content: String)
+
     fun observeNews(coroutineContext: CoroutineContext): LiveData<ResourceState<List<News>>>
 
 }

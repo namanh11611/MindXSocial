@@ -3,8 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/newsListFragment">
+    app:startDestination="@id/registerFragment">
 
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.namanh.kotlinbase.view.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.namanh.kotlinbase.view.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newsListFragment"
         android:name="com.namanh.kotlinbase.view.list.NewsListFragment"
@@ -13,6 +31,9 @@
         <action
             android:id="@+id/action_newsListFragment_to_newsDetailFragment"
             app:destination="@id/newsDetailFragment" />
+        <action
+            android:id="@+id/action_newsListFragment_to_addNewsFragment"
+            app:destination="@id/addNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
@@ -21,6 +42,15 @@
         tools:layout="@layout/fragment_news_detail" >
         <action
             android:id="@+id/action_newsDetailFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewsFragment"
+        android:name="com.namanh.kotlinbase.view.add.AddNewsFragment"
+        android:label="fragment_add_news"
+        tools:layout="@layout/fragment_add_news" >
+        <action
+            android:id="@+id/action_addNewsFragment_to_newsListFragment"
             app:destination="@id/newsListFragment" />
     </fragment>
 </navigation>

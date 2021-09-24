@@ -1,10 +1,6 @@
 package com.namanh.kotlinbase.data.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.namanh.kotlinbase.data.model.News
 
 @Dao
@@ -20,6 +16,9 @@ interface NewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(news: List<News>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(news: News)
 
     @Query("DELETE FROM news")
     suspend fun deleteAll()
