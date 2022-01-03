@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.namanh.kotlinbase.view.register.RegisterFragment"
+        android:name="com.namanh.mindx.view.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.namanh.kotlinbase.view.login.LoginFragment"
+        android:name="com.namanh.mindx.view.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsListFragment"
-        android:name="com.namanh.kotlinbase.view.list.NewsListFragment"
+        android:name="com.namanh.mindx.view.list.NewsListFragment"
         android:label="fragment_news_list"
         tools:layout="@layout/fragment_news_list" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
-        android:name="com.namanh.kotlinbase.view.detail.NewsDetailFragment"
+        android:name="com.namanh.mindx.view.detail.NewsDetailFragment"
         android:label="fragment_news_detail"
         tools:layout="@layout/fragment_news_detail" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNewsFragment"
-        android:name="com.namanh.kotlinbase.view.add.AddNewsFragment"
+        android:name="com.namanh.mindx.view.add.AddNewsFragment"
         android:label="fragment_add_news"
         tools:layout="@layout/fragment_add_news" >
         <action
